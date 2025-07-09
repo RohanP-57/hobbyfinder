@@ -1,1 +1,24 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"hobbyfinder-d2494","appId":"1:415451161228:android:9e7f31805272d87698d1a9","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"hobbyfinder-d2494","configurations":{"android":"1:415451161228:android:9e7f31805272d87698d1a9","macos":"1:415451161228:ios:a27db3e65f0b257098d1a9","web":"1:415451161228:web:73a8e3bc7cf0de4798d1a9","windows":"1:415451161228:web:b710a48216ee146798d1a9"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "hobbyfinder-d2494",
+          "appId": "1:415451161228:android:9e7f31805272d87698d1a9",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "hobbyfinder-d2494",
+          "configurations": {
+            "android": "1:415451161228:android:9e7f31805272d87698d1a9",
+            "macos": "1:415451161228:ios:a27db3e65f0b257098d1a9",
+            "web": "1:415451161228:web:73a8e3bc7cf0de4798d1a9",
+            "windows": "1:415451161228:web:b710a48216ee146798d1a9"
+          }
+        }
+      }
+    }
+  }
+}

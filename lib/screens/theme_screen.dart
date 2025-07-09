@@ -17,7 +17,7 @@ class ThemeScreen extends StatelessWidget {
           ),
           ListTile(
             title: const Text("Earthy Warm"),
-            onTap: () => onThemeChange(ThemeMode.system), // can be mapped later
+            onTap: () => onThemeChange(ThemeMode.system),
           ),
           ListTile(
             title: const Text("Mystic Deep"),

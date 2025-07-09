@@ -94,6 +94,4 @@ The app supports 3 different color themes, each with its own unique palette. You
 - `google_fonts`: For adding Google Fonts to the app.
 - `http`: For making HTTP requests to the Gemini API.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 

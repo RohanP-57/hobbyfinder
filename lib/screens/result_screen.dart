@@ -5,7 +5,6 @@ class ResultScreen extends StatelessWidget {
 
   const ResultScreen({super.key, required this.hobbies});
 
-  // Helper to extract hobbies and reasoning
   List<Map<String, String>> parseHobbyDetails(String hobbyText) {
     final hobbySections = hobbyText.split('\n\n');
     List<Map<String, String>> results = [];
@@ -13,7 +12,7 @@ class ResultScreen extends StatelessWidget {
     for (final section in hobbySections) {
       final lines = section.trim().split('\n');
       if (lines.length >= 2) {
-        final title = lines[0].replaceAll('**', '').trim(); // Remove ** from titles
+        final title = lines[0].replaceAll('**', '').trim();
         final description = lines.sublist(1).join('\n');
         results.add({'title': title, 'description': description});
       }
@@ -37,7 +36,6 @@ class ResultScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            // Expandable hobby recommendation cards
             ...hobbyList.map((hobby) {
               return ExpansionTile(
                 title: Text(

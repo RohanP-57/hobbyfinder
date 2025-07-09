@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "Welcome to HobbyFinder!",
+                "Welcome to Hobbs",
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,

@@ -41,6 +41,7 @@ dependencies:
   google_generative_ai: ^0.4.7
   google_fonts: ^6.2.1
   path_provider: ^2.1.5
+  flutter_launcher_icons: "^0.14.3"
 
 
 dev_dependencies:
@@ -67,6 +68,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/dataset/hobbylist.csv
+    - assets/icon/hobbs.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

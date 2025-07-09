@@ -21,18 +21,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   final List<TextEditingController> controllers = List.generate(
     5,
-        (index) => TextEditingController(),
+    (index) => TextEditingController(),
   );
 
   bool isLoading = false;
 
-  final String apiKey = "AIzaSyCWjX3NqQ8Y9VII_dOYKUK7WxIzAmMsUA4"; // Replace with your actual Gemini API key
+  final String apiKey = "AIzaSyCWjX3NqQ8Y9VII_dOYKUK7WxIzAmMsUA4";
   late GeminiService geminiService;
 
   @override
   void initState() {
     super.initState();
-    geminiService = GeminiService(apiKey); // Initialize GeminiService with API key
+    geminiService = GeminiService(
+      apiKey,
+    );
   }
 
   Future<void> _generateHobbies() async {
@@ -40,7 +42,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     final answers = controllers.map((c) => c.text).join("\n");
     final matchedHobbies = await HobbyService.findHobbies(answers);
-    final hobbySuggestions = await geminiService.generateHobbySuggestions(answers, matchedHobbies);
+    final hobbySuggestions = await geminiService.generateHobbySuggestions(
+      answers,
+      matchedHobbies,
+    );
 
     if (mounted) {
       Navigator.push(
@@ -69,7 +74,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
         title: const Text("Answer These Questions"),
         backgroundColor: Colors.teal,
       ),
-      body: SingleChildScrollView( // Make the screen scrollable
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
@@ -88,9 +93,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           textStyle: const TextStyle(fontSize: 16),
                         ),
-                        child: isLoading
-                            ? const CircularProgressIndicator(color: Colors.white)
-                            : const Text("Get My Hobby"),
+                        child:
+                            isLoading
+                                ? const CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                                : const Text("Get My Hobby"),
                       ),
                     ],
                   );
@@ -101,7 +109,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   children: [
                     Text(
                       questions[index],
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     TextField(
