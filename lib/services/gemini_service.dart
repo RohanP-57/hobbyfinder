@@ -1,11 +1,14 @@
-import 'package:google_generative_ai/google_generative_ai.dart';
+// NEW FILE – replace the old one completely
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class GeminiService {
-  final String apiKey;
+  static const String baseUrl = 'http://10.0.2.2:3000'; // emulator host
 
-  GeminiService(this.apiKey);
-
-  Future<String> generateHobbySuggestions(String answers, List<String> matchedHobbies) async {
+  static Future<String> generateHobbySuggestions(
+      String answers,
+      List<String> matchedHobbies,
+      ) async {
     final prompt = '''
 User's Answers:
 $answers
@@ -22,23 +25,23 @@ Only include hobbies from the list and return 2 to 4 best matches.
 ''';
 
     try {
-      final model = GenerativeModel(
-        model: 'gemini-2.0-flash',
-        apiKey: apiKey,
+      final response = await http.post(
+        Uri.parse('$baseUrl/recommend'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'prompt': prompt}),
       );
 
-      final response = await model.generateContent([
-        Content.text(prompt),
-      ]);
-
-      final text = response.text;
-      if (text != null && text.isNotEmpty) {
-        return text;
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final text = data['candidates']?[0]?['content']?['parts']?[0]?['text'];
+        return (text != null && text.trim().isNotEmpty)
+            ? text.trim()
+            : 'No relevant hobbies found. Try adjusting your answers.';
       } else {
-        return "No relevant hobbies found. Try adjusting your answers.";
+        return 'Proxy error (${response.statusCode}): ${response.body}';
       }
     } catch (e) {
-      return "Error: ${e.toString()}";
+      return 'Error: $e';
     }
   }
 }

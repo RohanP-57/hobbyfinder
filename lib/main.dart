@@ -19,15 +19,9 @@ class _MyAppState extends State<MyApp> {
   ThemeData _currentTheme = AppThemes.dreamyPastels;
   int _currentIndex = 0;
 
-  void _changeTheme(ThemeMode mode) {
+  void _changeTheme(ThemeData newTheme) {
     setState(() {
-      if (mode == ThemeMode.light) {
-        _currentTheme = AppThemes.dreamyPastels;
-      } else if (mode == ThemeMode.dark) {
-        _currentTheme = AppThemes.mysticDeep;
-      } else {
-        _currentTheme = AppThemes.earthyWarm;
-      }
+      _currentTheme = newTheme;
     });
   }
 
@@ -36,6 +30,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'AI Hobby Recommender',
       theme: _currentTheme,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: _currentIndex == 0
             ? const HomeScreen()

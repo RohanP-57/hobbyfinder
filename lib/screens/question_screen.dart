@@ -19,30 +19,18 @@ class _QuestionScreenState extends State<QuestionScreen> {
     "5. How much time can you spend on a hobby weekly?",
   ];
 
-  final List<TextEditingController> controllers = List.generate(
-    5,
-    (index) => TextEditingController(),
-  );
+  final List<TextEditingController> controllers =
+  List.generate(5, (_) => TextEditingController());
 
   bool isLoading = false;
-
-  final String apiKey = "AIzaSyCWjX3NqQ8Y9VII_dOYKUK7WxIzAmMsUA4";
-  late GeminiService geminiService;
-
-  @override
-  void initState() {
-    super.initState();
-    geminiService = GeminiService(
-      apiKey,
-    );
-  }
 
   Future<void> _generateHobbies() async {
     setState(() => isLoading = true);
 
     final answers = controllers.map((c) => c.text).join("\n");
     final matchedHobbies = await HobbyService.findHobbies(answers);
-    final hobbySuggestions = await geminiService.generateHobbySuggestions(
+
+    final hobbySuggestions = await GeminiService.generateHobbySuggestions(
       answers,
       matchedHobbies,
     );
@@ -51,7 +39,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ResultScreen(hobbies: hobbySuggestions),
+          builder: (_) => ResultScreen(hobbies: hobbySuggestions),
         ),
       );
     }
@@ -61,9 +49,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   void dispose() {
-    for (final controller in controllers) {
-      controller.dispose();
-    }
+    for (final c in controllers) c.dispose();
     super.dispose();
   }
 
@@ -80,6 +66,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           children: [
             ListView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: questions.length + 1,
               itemBuilder: (context, index) {
                 if (index == questions.length) {
@@ -91,14 +78,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.teal,
                           padding: const EdgeInsets.symmetric(vertical: 12),
-                          textStyle: const TextStyle(fontSize: 16),
                         ),
-                        child:
-                            isLoading
-                                ? const CircularProgressIndicator(
-                                  color: Colors.white,
-                                )
-                                : const Text("Get My Hobby"),
+                        child: isLoading
+                            ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                            : const Text("Get My Hobby"),
                       ),
                     ],
                   );

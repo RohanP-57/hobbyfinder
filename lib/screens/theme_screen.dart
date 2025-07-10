@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../theme/app_themes.dart';
 
 class ThemeScreen extends StatelessWidget {
-  final ValueChanged<ThemeMode> onThemeChange;
+  final ValueChanged<ThemeData> onThemeChange;
 
   const ThemeScreen({super.key, required this.onThemeChange});
 
@@ -13,15 +14,28 @@ class ThemeScreen extends StatelessWidget {
         children: [
           ListTile(
             title: const Text("Dreamy Pastels"),
-            onTap: () => onThemeChange(ThemeMode.light),
+            onTap: () => onThemeChange(AppThemes.dreamyPastels),
           ),
           ListTile(
             title: const Text("Earthy Warm"),
-            onTap: () => onThemeChange(ThemeMode.system),
+            onTap: () => onThemeChange(AppThemes.earthyWarm),
           ),
           ListTile(
             title: const Text("Mystic Deep"),
-            onTap: () => onThemeChange(ThemeMode.dark),
+            onTap: () => onThemeChange(AppThemes.mysticDeep),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text("Blush Bloom"),
+            onTap: () => onThemeChange(AppThemes.blushBloom),
+          ),
+          ListTile(
+            title: const Text("Forest Calm"),
+            onTap: () => onThemeChange(AppThemes.forestCalm),
+          ),
+          ListTile(
+            title: const Text("Cyber Night"),
+            onTap: () => onThemeChange(AppThemes.cyberNight),
           ),
         ],
       ),

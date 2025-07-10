@@ -24,6 +24,8 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hobbyList = parseHobbyDetails(hobbies);
+    final textTheme = Theme.of(context).textTheme;
+    final cardColor = Theme.of(context).cardColor;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Your Recommended Hobbies")),
@@ -31,17 +33,18 @@ class ResultScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            const Text(
+            Text(
               "Based on your answers:",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
             ...hobbyList.map((hobby) {
               return ExpansionTile(
                 title: Text(
                   hobby['title'] ?? 'Unknown Hobby',
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -51,13 +54,13 @@ class ResultScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(12),
                     margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.grey[100],
+                      color: cardColor,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.grey.shade300),
                     ),
                     child: Text(
                       hobby['description'] ?? '',
-                      style: const TextStyle(fontSize: 15),
+                      style: textTheme.bodyMedium?.copyWith(fontSize: 15),
                     ),
                   )
                 ],
