@@ -2,7 +2,7 @@ import 'package:flutter/services.dart' show rootBundle;
 
 class HobbyService {
   static Future<List<Map<String, String>>> loadHobbyData() async {
-    final data = await rootBundle.loadString('dataset/hobbylist.csv');
+    final data = await rootBundle.loadString('assets/dataset/hobbylist.csv');
     List<Map<String, String>> hobbyList = [];
 
     List<String> lines = data.split('\n');
