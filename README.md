@@ -11,26 +11,6 @@ The Hobby Recommender App is a Flutter-based mobile application that uses the Ge
 - **Theme Switching**: Supports 3 distinct color palettes that can be switched via a navigation bar.
 - **Light and Minimalistic UI**: The app uses smooth animations and a clean, minimal design.
 
-## Folder Structure
-Here’s the folder structure for the app:
-
-```
-lib/
-├── main.dart              # Entry point of the app
-├── hobby_service.dart     # Contains logic for fetching hobby recommendations from the Gemini API
-├── gemini_service.dart    # Handles communication with the Gemini API
-├── screens/
-│   ├── home_screen.dart   # Displays the home screen
-│   ├── question_screen.dart  # Displays the screen with questions
-│   ├── result_screen.dart   # Displays the result screen with hobby suggestions
-├── theme/
-│   ├── theme_data.dart    # Contains theme data and switching logic
-└── widgets/
-    ├── custom_card.dart   # Custom widget for displaying hobby cards
-    ├── question_card.dart # Custom widget for displaying each question
-    └── expandable_card.dart # Custom widget for displaying expandable hobby cards
-```
-
 ## Workflow
 1. **Home Screen**:
     - Displays a welcome message and a button to navigate to the Question Screen.
@@ -58,26 +38,6 @@ lib/
 ### Result Screen
 ![Result Screen](screenshots/result_screen.png)
 
-### Theme Switcher
-![Theme Switcher](screenshots/theme_switcher.png)
-
-
-## How to Run the App
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/RohanXD/hobbyfinder
-   ```
-
-2. Install dependencies:
-   ```bash
-   flutter pub get
-   ```
-
-3. Run the app:
-   ```bash
-   flutter run
-   ```
-
 ## Theme Switching
 The app supports 3 different color themes, each with its own unique palette. You can switch themes using the navigation bar located at the top of the app.
 
@@ -95,6 +55,4 @@ The app supports 3 different color themes, each with its own unique palette. You
 - `google_fonts`: For adding Google Fonts to the app.
 - `http`: For making HTTP requests to the Gemini API.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
